@@ -1,11 +1,14 @@
 import chalk from 'chalk';
+import { getThemeColors } from './config.js';
+
+const theme = getThemeColors();
 
 export function header(text: string): string {
-  return chalk.bold(text);
+  return chalk.hex(theme.header || '#FFFFFF').bold(text);
 }
 
 export function subheader(text: string): string {
-  return chalk.cyan.bold(`  ${text}`);
+  return chalk.hex(theme.subheader || '#00FFFF').bold(`  ${text}`);
 }
 
 export function item(text: string): string {
@@ -13,18 +16,18 @@ export function item(text: string): string {
 }
 
 export function dimItem(label: string, value: string): string {
-  return `    ${chalk.gray(label)} ${value}`;
+  return `    ${chalk.hex(theme.muted || '#808080')(label)} ${value}`;
 }
 
 export function separator(): string {
-  return chalk.gray('  ' + '─'.repeat(40));
+  return chalk.hex(theme.muted || '#808080')('  ' + '─'.repeat(40));
 }
 
 export function scoreColor(score: number): typeof chalk {
-  if (score >= 90) return chalk.green;
-  if (score >= 70) return chalk.yellow;
+  if (score >= 90) return chalk.hex(theme.success || '#00FF00');
+  if (score >= 70) return chalk.hex(theme.warning || '#FFFF00');
   if (score >= 50) return chalk.hex('#FFA500');
-  return chalk.red;
+  return chalk.hex(theme.error || '#FF0000');
 }
 
 export function scoreGrade(score: number): string {
@@ -36,7 +39,9 @@ export function scoreGrade(score: number): string {
 }
 
 export function check(ok: boolean, label: string): string {
-  return ok ? chalk.green(`  ✓ ${label}`) : chalk.red(`  ✗ ${label}`);
+  return ok 
+    ? chalk.hex(theme.success || '#00FF00')(`  ✓ ${label}`) 
+    : chalk.hex(theme.error || '#FF0000')(`  ✗ ${label}`);
 }
 
 export function timeAgo(dateStr: string): string {
