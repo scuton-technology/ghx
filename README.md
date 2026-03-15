@@ -23,7 +23,7 @@
 ## Install
 
 ```bash
-npm install -g git-pulse
+npm install -g @sabahattinkalkan/gpulse
 ```
 
 ## Setup
