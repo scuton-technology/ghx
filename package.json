@@ -1,6 +1,6 @@
 {
   "name": "@sabahattinkalkan/gpulse",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "The Missing GitHub CLI Toolkit — standup, stats, changelog, health, review, digest",
   "type": "module",
   "main": "dist/index.js",
